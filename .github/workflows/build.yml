@@ -9,9 +9,6 @@ jobs:
     name: Build
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
       - uses: http://192.168.0.115:9000/
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
