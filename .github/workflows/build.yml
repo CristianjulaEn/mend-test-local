@@ -2,14 +2,17 @@ name: Build
 on:
   push:
     branches:
-      - main # or the name of your main branch
+      - master # or the name of your main branch
 
 jobs:
   build:
     name: Build
     runs-on: ubuntu-latest
     steps:
-      - path: http://192.168.0.115:9000/
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - uses: docker://sonarsource/sonar-scanner-cli:latest
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
