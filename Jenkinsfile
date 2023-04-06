@@ -2,10 +2,10 @@ node {
   stage('SCM') {
     checkout scm
   }
-  stage('SonarQube analysis') {
-    def scannerHome = tool 'SonarScanner 4.8';
-    withSonarQubeEnv('My SonarQube Server') { // If you have configured more than one global server connection, you can specify its name
-      sh "${scannerHome}/bin/sonar-scanner"
+  stage('SonarQube Analysis') {
+    def mvn = tool 'Default Maven';
+    withSonarQubeEnv() {
+      sh "${mvn}/bin/mvn clean verify sonar:sonar -Dsonar.projectKey=CristianjulaEn_mend-test-local_AYdWx3XZdvDiP60CTNyb"
     }
   }
 }
