@@ -1,6 +1,6 @@
 node {
   stage('SCM') {
-    git 'https://github.com/foo/bar.git'
+    checkout scm
   }
   stage('SonarQube analysis') {
     def scannerHome = tool 'SonarScanner 4.8';
